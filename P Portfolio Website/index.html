@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ishaan Nomani - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Kaleem Akhtar Khan</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#resume">Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="title-page" class="page">
+        <h1 class="title">Portfolio</h1>
+    </section>
+
+    <section id="about" class="page">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>Hello there! I'm Kaleem Akhtar Khan, a dynamic and enthusiastic individual with a passion for technology and innovation. I thrive in creative environments where I can apply my skills to solve complex problems and create impactful solutions.</p>
+            <p>With a keen interest in the ever-evolving field of technology, I'm constantly exploring new tools and techniques to stay ahead of the curve. My expertise includes Java programming, web developments, data analysis, and more.</p>
+            <p>I believe in the power of collaboration and enjoy working in diverse teams to achieve common goals. My strong communication skills and adaptability allow me to thrive in fast-paced environments.</p>
+            <p>Outside of the tech world, I'm an avid learner and enjoy exploring various hobbies such as photography, hiking. I believe in maintaining a healthy work-life balance and find inspiration in the beauty of nature and the joy of creativity.</p>
+            <p>Feel free to connect with me to explore potential opportunities or simply to share ideas and experiences. Let's embark on a journey of innovation and growth together!</p>
+        </div>
+    </section>
+    
+
+    <section id="projects" class="page">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>1. Scratch Animation</h3>
+            <p>Create a simple animation using Scratch, where characters move and interact with each other.</p>
+        </div>
+        <div class="project">
+            <h3>2. Code a Robot</h3>
+            <p>Program a virtual robot to navigate through a maze or perform simple tasks using Blockly.</p>
+        </div>
+        <div class="project">
+            <h3>3. Interactive Story</h3>
+            <p>Write and code an interactive story using Twine, allowing users to make choices that affect the outcome.</p>
+        </div>
+    </section>
+
+    <section id="resume" class="page">
+        <h2>Resume</h2>
+        <div class="resume-item">
+            <h3>Kaleem Akhtar Khan</h3>
+            <p>Email: kaleemakhtarkhan1@gmail.com</p>
+            <p>Phone: 9621111735</p>
+        </div>
+        <div class="resume-item">
+            <h3>Education-</h3>
+            <p>SITA INTER COLLEGE MAHMUDABAD </p>
+            <p>ABDUL KALAM TECHNICAL UNIVERSITY</p>
+        </div>
+        <div class="resume-item">
+            <h3>Skills</h3>
+            <ul>
+                <li>Java Programming</li>
+                <li>Web Designing</li>
+                <li>Problem-solving</li>
+                <li>Teamwork</li>
+            </ul>
+        </div>
+        <div class="resume-item">
+            <h3>Experience</h3>
+            <p>No formal work experience. However, I have participated in coding classes and projects at college.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 KALEEM KHAN. All rights reserved.</p>
+            <ul class="social-media">
+                <li class="linkedin"><a href="https://www.linkedin.com/in/kaleem-akhtar-khan-3075092b6/">LinkedIn</a></li>
+            </ul>
+            <p>Contact: kaleemakhtarkhan1@gmail.com</p>
+        </div>
+    </footer>
+
+    <script>
+        const sections = document.querySelectorAll('.page');
+        const links = document.querySelectorAll('nav ul li a');
+
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                sections.forEach(section => {
+                    if (section.id === targetId) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

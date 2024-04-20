@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expense Tracker</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f6f6f693;
+  }
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  h1 {
+    text-align: center;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+  form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  input[type="submit"] {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ff6b6b;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  input[type="submit"]:hover {
+    background-color: #64e73c;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fdcb6e;
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  li span {
+    flex: 1;
+  }
+  button {
+    background-color: #54b5d8a3;
+    color: #0c0101;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  button:hover {
+    background-color: #e21717;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Expense Tracker</h1>
+  <form id="expenseForm">
+    <input type="text" id="expenseName" placeholder="Expense Name">
+    <input type="text" id="expenseAmount" placeholder="Amount in ₹">
+    <input type="submit" value="Add Expense">
+  </form>
+  <ul id="expenseList"></ul>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const expenseForm = document.getElementById('expenseForm');
+    const expenseList = document.getElementById('expenseList');
+    
+    // Load expenses from local storage
+    const expenses = JSON.parse(localStorage.getItem('expenses')) || [];
+
+    // Function to render expenses
+    function renderExpenses() {
+      expenseList.innerHTML = '';
+      expenses.forEach(function(expense, index) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span>${expense.name}</span>
+          <span>₹ ${expense.amount.toFixed(2)}</span>
+          <button class="delete" data-index="${index}">Delete</button>
+        `;
+        expenseList.appendChild(li);
+      });
+    }
+
+    renderExpenses();
+
+    // Add Expense
+    expenseForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('expenseName').value;
+      const amount = parseFloat(document.getElementById('expenseAmount').value.replace(/,/g, ''));
+      if (name && amount) {
+        expenses.push({ name, amount });
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+        renderExpenses();
+        expenseForm.reset();
+      } else {
+        alert('Please fill out both fields.');
+      }
+    });
+
+    // Delete Expense
+    expenseList.addEventListener('click', function(event) {
+      if (event.target.classList.contains('delete')) {
+        const index = event.target.dataset.index;
+        expenses.splice(index, 1);
+        localStorage.setItem('expenses', JSON.stringify(expenses));
+        renderExpenses();
+      }
+    });
+  });
+</script>
+</body>
+</html>
